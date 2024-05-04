@@ -4,6 +4,7 @@
   "description": "Full-stack assessment for Chimoney",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ikwemogena Abdulai",
