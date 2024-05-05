@@ -8,8 +8,8 @@ export const createUser = async (name: string, email: string, password: string) 
 export const getUserByEmail = async (email: string) => {
     try {
         const { rows } = await client.query('SELECT * FROM users WHERE email = $1', [email]);
-        return rows;
+        return rows[0];
     } catch (error) {
-        console.error('Error executing query', error);
+        return null;
     }
 }
