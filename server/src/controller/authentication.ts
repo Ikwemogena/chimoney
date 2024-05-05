@@ -1,28 +1,24 @@
 import express from 'express';
-import { createUser, getUserByEmail } from '../repository/users';
-import { authentication, random } from '../helpers';
+import { addUserToDb, getExistingUser, signUpUser } from '../repository/users';
+import { supabase } from '../services/supabase';
+import { AuthenticatedUser } from 'types/user';
 export const registerUser = async (req: express.Request, res: express.Response) => {
     try {
-        const { email, password, name } = req.body
+        const { email, password, name, username, phone_number } = req.body
 
-        if (!email || !password || !name) {
+        if (!email || !password || !name || !username || !phone_number) {
             return res.status(400).send({ message: 'Missing fields' });
         }
 
-        const existingUser = await getUserByEmail(email)
+        const existingUser = await getExistingUser(email)
 
         if (existingUser) {
             return res.status(400).send({ message: 'User already exists' })
         }
 
-        const salt = random()
+        const user = await signUpUser(email, password) as AuthenticatedUser
 
-        const user = await createUser(
-            name,
-            email,
-            authentication(salt, password)
-        )
-
+        await addUserToDb({ id: user.id, email, name, username, phone_number })
         return res.status(201).json(user).end();
     } catch (error) {
         return res.status(400).send({ message: 'Error creating user' });
@@ -37,14 +33,10 @@ export const login = async (req: express.Request, res: express.Response) => {
             return res.status(400).send({ message: 'Missing fields' });
         }
 
-        const user = await getUserByEmail(email)
+        const user = await getExistingUser(email)
 
         if (!user) {
             return res.status(400).send({ message: 'User not found' })
-        }
-
-        if (user.password !== password.toString()) {
-            return res.status(403).send({ message: 'Invalid username/password' })
         }
 
         return res.status(200).json(user).end();
