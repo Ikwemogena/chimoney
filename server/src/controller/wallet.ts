@@ -25,6 +25,13 @@ export const makeMoneyTransfer = async (req: express.Request, res: express.Respo
             return res.status(400).send({ message: 'Missing fields' });
         }
 
+        const senderAccount = await getWallet(subAccount)
+        const receiverAccount = await getWallet(receiver)
+
+        if (!senderAccount || !receiverAccount) {
+            return res.status(400).send({ message: 'Account does not exist' });
+        }
+
         const transfer = await transferMoney({ subAccount, receiver, valueInUSD })
 
         return res.status(201).json(transfer).end();
