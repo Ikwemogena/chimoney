@@ -4,9 +4,8 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import cors from 'cors';
-
+import router from './router';
 require('dotenv').config()
-
 const { Client } = require('pg');
 
 const app = express();
@@ -21,11 +20,9 @@ app.use(bodyParser.json());
 
 const server = http.createServer(app);
 
-server.listen(8080, () => {
-    console.log('Server is running on port 8080')
-})
+app.use('/', router())
 
-const client = new Client({
+export const client = new Client({
     user: process.env.PG_USER,
     host: process.env.PG_HOST,
     database: process.env.PG_DATABASE,
@@ -33,6 +30,13 @@ const client = new Client({
     port: process.env.PG_PORT
 });
 
+server.listen(8080, () => {
+    console.log('Server is running on port 8080')
+})
+
+
 client.connect()
-    .then(() => console.log('Connected to database'))
+    .then(() => {
+        console.log('Connected to database')
+    })
     .catch((err: any) => console.error('Connection error', err.stack));
