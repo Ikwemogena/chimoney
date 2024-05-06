@@ -1,4 +1,5 @@
 import { supabase } from "../services/supabase";
+import { createSubAccount } from "./transactions";
 
 export const signUpUser = async (email: string, password: string) => {
     try {
@@ -20,10 +21,19 @@ export const signUpUser = async (email: string, password: string) => {
 
 export const addUserToDb = async (user: object) => {
     try {
-        await supabase
+        const { data } = await supabase
             .from('users')
             .insert([user])
             .select()
+            .single()
+
+        if (data) {
+            createSubAccount({
+                name: data.name,
+                email: data.email,
+                id: data.id
+            });
+        }
     } catch (error) {
         return error
     }
