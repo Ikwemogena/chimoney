@@ -31,6 +31,6 @@ export const sendPayment = async (payload: object) => {
         const response = await makeRequest('/payouts/chimoney', 'POST', payload)
         return response
     } catch (error) {
-        return null
+        return error
     }
 }
