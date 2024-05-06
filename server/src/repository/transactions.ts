@@ -34,3 +34,12 @@ export const sendPayment = async (payload: object) => {
         return error
     }
 }
+
+export const initiatePayment = async (payload: object) => {
+    try {
+        const response = await makeRequest('/payment/initiate', 'POST', payload)
+        return response
+    } catch (error) {
+        return error
+    }
+}
