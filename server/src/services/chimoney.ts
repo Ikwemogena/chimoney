@@ -15,11 +15,11 @@ export const makeRequest = async (endpoint: string, method: 'GET' | 'POST' = 'GE
         url: `${baseUrl}/${endpoint}`,
         data: payload,
     };
-
+    
     try {
         const response = await axios(options);
-        return response.data;
+        return Promise.resolve(response.data)
     } catch (error) {
-        return null
+        return Promise.reject(error.response.data.error)
     }
 };

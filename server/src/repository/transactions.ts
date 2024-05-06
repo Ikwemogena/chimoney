@@ -25,3 +25,12 @@ export const getTransactions = async (id: string) => {
         return null
     }
 }
+
+export const sendPayment = async (payload: object) => {
+    try {
+        const response = await makeRequest('/payouts/chimoney', 'POST', payload)
+        return response
+    } catch (error) {
+        return error
+    }
+}
