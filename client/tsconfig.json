@@ -24,7 +24,8 @@
       "@/*": [
         "./*"
       ]
-    }
+    },
+    "moduleResolution": "NodeNext"
   },
   "include": [
     "next-env.d.ts",
