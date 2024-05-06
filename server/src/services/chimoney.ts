@@ -8,21 +8,11 @@ const headers = {
     'X-API-KEY': process.env.CHIMONEY_API_KEY
 }
 
-export const fetchData = async (url: string) => {
-    axios.get(`${baseUrl}/${url}`, { headers })
-        .then((response: any) => {
-            console.log(response.data);
-        })
-        .catch((error: any) => {
-            console.error(error);
-        });
-}
-
-export const makeRequest = async (url: string, method: 'GET' | 'POST' = 'GET', payload: any = null) => {
+export const makeRequest = async (endpoint: string, method: 'GET' | 'POST' = 'GET', payload: any = null) => {
     const options = {
         method,
         headers,
-        url: `${baseUrl}/${url}`,
+        url: `${baseUrl}/${endpoint}`,
         data: payload,
     };
 
@@ -30,6 +20,6 @@ export const makeRequest = async (url: string, method: 'GET' | 'POST' = 'GET', p
         const response = await axios(options);
         return response.data;
     } catch (error) {
-        return { message: 'Error making request' }
+        return null
     }
 };
