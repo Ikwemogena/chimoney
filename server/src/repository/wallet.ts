@@ -9,3 +9,12 @@ export const getWallet = async (id: string) => {
         return null
     }
 }
+
+export const transferMoney = async (data: { subAccount: string, receiver: string, valueInUSD: number }) => {
+    try {
+        const response = await makeRequest('/wallets/transfer', 'POST', data)
+        return response
+    } catch (error) {
+        return null
+    }
+}
