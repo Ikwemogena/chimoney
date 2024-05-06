@@ -19,7 +19,6 @@ export const fetchData = async (url: string) => {
 }
 
 export const makeRequest = async (url: string, method: 'GET' | 'POST' = 'GET', payload: any = null) => {
-    console.log('inside makeRequest')
     const options = {
         method,
         headers,
@@ -29,8 +28,8 @@ export const makeRequest = async (url: string, method: 'GET' | 'POST' = 'GET', p
 
     try {
         const response = await axios(options);
-        console.log(response.data);
+        return response.data;
     } catch (error) {
-        console.error(error);
+        return { message: 'Error making request' }
     }
 };
