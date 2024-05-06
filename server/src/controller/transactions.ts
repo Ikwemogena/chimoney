@@ -1,5 +1,5 @@
 import express from 'express';
-import { getTransactions, sendPayment } from '../repository/transactions';
+import { getTransactions, initiatePayment, sendPayment } from '../repository/transactions';
 
 export const getAllUserTransactions = async (req: express.Request, res: express.Response) => {
     try {
@@ -33,5 +33,21 @@ export const initiatePayout = async (req: express.Request, res: express.Response
         return res.status(201).json(payout).end();
     } catch (error) {
 
+    }
+}
+
+export const sendPaymentRequest = async (req: express.Request, res: express.Response) => {
+    try {
+        const { subAccount, payerEmail, valueInUSD } = req.body
+
+        if (!subAccount || !payerEmail || !valueInUSD) {
+            return res.status(400).send({ message: 'Missing required fields' });
+        }
+
+        const paymentRequest = await initiatePayment({ subAccount, payerEmail, valueInUSD })
+
+        return res.status(201).json(paymentRequest).end();
+    } catch (error) {
+        return res.status(500).send({ message: 'Internal server error' });
     }
 }
