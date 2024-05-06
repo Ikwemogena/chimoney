@@ -64,3 +64,12 @@ export const loginUser = async (email: string, password: string) => {
         return null
     }
 }
+
+export const getUserByToken = async (token: string) => {
+    try {
+        const { data: { user } } = await supabase.auth.getUser(token)
+        return user
+    } catch (error) {
+        return error
+    }
+}
