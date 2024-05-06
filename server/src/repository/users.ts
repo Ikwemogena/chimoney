@@ -42,3 +42,15 @@ export const getExistingUser = async (email: string) => {
         return null
     }
 }
+
+export const loginUser = async (email: string, password: string) => {
+    try {
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email,
+            password
+        })
+        return data.session
+    } catch (error) {
+        return null
+    }
+}

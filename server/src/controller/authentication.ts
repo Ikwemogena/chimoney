@@ -1,7 +1,7 @@
 import express from 'express';
-import { addUserToDb, getExistingUser, signUpUser } from '../repository/users';
-import { supabase } from '../services/supabase';
+import { addUserToDb, getExistingUser, loginUser, signUpUser } from '../repository/users';
 import { AuthenticatedUser } from 'types/user';
+
 export const registerUser = async (req: express.Request, res: express.Response) => {
     try {
         const { email, password, name, username, phone_number } = req.body
@@ -39,7 +39,10 @@ export const login = async (req: express.Request, res: express.Response) => {
             return res.status(400).send({ message: 'User not found' })
         }
 
-        return res.status(200).json(user).end();
+        const authUser = await loginUser(email, password)
+        res.cookie('access_token', authUser.access_token, { domain: 'localhost', path: '/', expires: new Date(Date.now() + authUser.expires_in * 1000) })
+
+        return res.status(200).json(authUser).end();
     } catch (error) {
         return res.status(400).send({ message: 'Error logging in' });
     }
