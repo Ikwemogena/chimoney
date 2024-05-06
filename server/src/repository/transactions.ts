@@ -16,3 +16,12 @@ export const createSubAccount = async (userData: UserData) => {
     }
     await makeRequest('/sub-account/create', 'POST', userData)
 }
+
+export const getTransactions = async (id: string) => {
+    try {
+        const transactions = await makeRequest('accounts/transactions', 'POST', { subAccount: id })
+        return transactions
+    } catch (error) {
+        return null
+    }
+}
