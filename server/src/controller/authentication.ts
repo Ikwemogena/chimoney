@@ -21,7 +21,7 @@ export const registerUser = async (req: express.Request, res: express.Response) 
         await addUserToDb({ id: user.id, email, name, username, phone_number })
         return res.status(201).json(user).end();
     } catch (error) {
-        return res.status(400).send({ message: 'Error creating user' });
+        return res.status(500).send({ message: 'Internal server error' });
     }
 }
 
