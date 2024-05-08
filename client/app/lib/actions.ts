@@ -1,8 +1,8 @@
+"use server"
 import { cookies } from "next/headers";
 import { redirect } from 'next/navigation'
 
 export async function login(prevState: any, formData: FormData) {
-
     const credentials = {
         email: formData.get('email'),
         password: formData.get('password')
@@ -46,7 +46,29 @@ export const fetchUserTransactions = async (id: string) => {
             console.log(response.status)
         }
         const data = await response.json();
-        return data;
+        return data.data;
+    } catch (error) {
+        return error
+    }
+}
+
+export const fetchWalletSummary = async (userId: string) => {
+
+    const token = cookies().get('accessToken')?.value
+    try {
+        const endpoint = `http://localhost:8080/wallet/${userId}`
+        const response = await fetch(endpoint, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+        if (!response.ok) {
+            console.log(response.status)
+        }
+        const data = await response.json();
+        return data.data;
     } catch (error) {
         return error
     }
