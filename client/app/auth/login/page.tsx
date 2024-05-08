@@ -1,6 +1,7 @@
 "use client"
 import { login } from "@/app/lib/actions"
-import { Box, Button, TextField, Typography } from "@mui/material"
+import { SubmitButton } from "@/app/ui/button/submit"
+import { Box, TextField, Typography } from "@mui/material"
 import Image from "next/image"
 import { useFormState } from "react-dom"
 
@@ -8,7 +9,6 @@ function page() {
     return (
         <Box
             display="flex"
-            // justifyContent={"center"}
             alignItems="center"
         >
             <Box bgcolor="#670b78" height={'100vh'} width={'100%'}>
@@ -46,7 +46,7 @@ function Login() {
                             <Typography variant="subtitle1">Forgot password?</Typography>
                         </Box>
                         <Box display={"flex"} marginTop={5}>
-                            <Button type="submit" variant="contained">Login</Button>
+                            <SubmitButton />
                         </Box>
                     </form>
                 </Box>
