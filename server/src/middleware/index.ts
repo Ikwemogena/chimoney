@@ -4,8 +4,7 @@ import { get, merge } from 'lodash';
 
 export const isAuthenticated = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     try {
-
-        const accessToken = req.cookies['access_token']
+        const accessToken = req.headers['authorization']?.split(' ')[1];
 
         if (!accessToken) {
             return res.status(403).send({ message: 'Unauthorized access.' });
@@ -14,7 +13,7 @@ export const isAuthenticated = async (req: express.Request, res: express.Respons
         const existingUser = await getUserByToken(accessToken)
 
         if (!existingUser) {
-            return res.sendStatus(403);
+            return res.status(403).send({ message: 'Invalid token.' });
         }
 
         merge(req, { identity: existingUser });
