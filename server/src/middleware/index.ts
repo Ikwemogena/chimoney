@@ -7,7 +7,7 @@ export const isAuthenticated = async (req: express.Request, res: express.Respons
         const accessToken = req.headers['authorization']?.split(' ')[1];
 
         if (!accessToken) {
-            return res.status(403).send({ message: 'Unauthorized access.' });
+            return res.status(401).send({ message: 'Unauthorized access.' });
         }
 
         const existingUser = await getUserByToken(accessToken)
