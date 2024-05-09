@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.scss";
 import SideNav from "./layout/SideNav";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -15,11 +14,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en" className={inter.className}>
       <body className="layout-wrapper">
-        <SideNav />
-        <main>{children}</main></body>
+        {<SideNav />}
+        <main>{children}</main>
+      </body>
     </html>
   );
 }
