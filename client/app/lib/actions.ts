@@ -43,6 +43,7 @@ export const fetchUserTransactions = async (id: string) => {
             },
         });
         if (!response.ok) {
+            cookies().delete('accessToken')
             console.log(response.status)
         }
         const data = await response.json();
