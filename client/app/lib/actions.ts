@@ -6,13 +6,6 @@ import _ from 'lodash';
 
 const baseUrl = process.env.BASE_URL
 
-const token = cookies().get('accessToken')?.value ? cookies().get('accessToken')?.value : null
-
-let user = cookies().get('user')?.value
-
-const userObj = user ? JSON.parse(user) : null;
-
-
 const useFetch = async (url: string, method: string, body: any) => {
     const token = cookies().get('accessToken')?.value
     try {
@@ -63,6 +56,11 @@ export async function login(prevState: any, formData: FormData) {
 }
 
 export const fetchUserTransactions = async () => {
+    const token = cookies().get('accessToken')?.value
+    let user = cookies().get('user')?.value
+
+    const userObj = user ? JSON.parse(user) : null;
+
     try {
         const endpoint = `${baseUrl}/user/transactions/${userObj?.id}`
         const response = await fetch(endpoint, {
@@ -83,6 +81,11 @@ export const fetchUserTransactions = async () => {
 }
 
 export const fetchWalletSummary = async () => {
+    const token = cookies().get('accessToken')?.value
+    let user = cookies().get('user')?.value
+
+    const userObj = user ? JSON.parse(user) : null;
+
     const endpoint = `${baseUrl}/wallet/${userObj?.id}`
 
     try {
@@ -105,6 +108,10 @@ export const fetchWalletSummary = async () => {
     }
 }
 export const sendMoneyToChiUser = async (prevState: any, formData: FormData) => {
+    const token = cookies().get('accessToken')?.value
+    let user = cookies().get('user')?.value
+
+    const userObj = user ? JSON.parse(user) : null;
 
     const payload = {
         subAccount: userObj?.id,
