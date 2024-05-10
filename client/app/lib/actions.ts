@@ -87,6 +87,11 @@ export async function login(prevState: any, formData: FormData) {
     }
 }
 
+export const signOut = () => { 
+    cookies().delete('accessToken');
+    redirect('/auth/sign-in');
+}
+
 export const fetchUserTransactions = async () => {
     const token = cookies().get('accessToken')?.value
     let user = cookies().get('user')?.value
@@ -236,3 +241,4 @@ export const requestPayment = async (prevState: any, formData: FormData) => {
     //     return { error: 'Invalid username/password' };
     // }
 }
+
