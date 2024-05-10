@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 export const config = {
@@ -21,8 +22,12 @@ export function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL("/auth/sign-in", request.url));
     }
 
-    if (isLoggedIn && request.nextUrl.pathname.includes('/auth')) {
+    if (isLoggedIn && request.nextUrl.pathname.includes('/auth/sign-in') || request.nextUrl.pathname.includes('/auth/sign-up')) {
         return NextResponse.redirect(new URL("/", request.url))
+    }
+
+    if (isLoggedIn && request.nextUrl.pathname === '/auth/sign-out') {
+        return NextResponse.redirect(new URL("/auth/sign-in", request.url));
     }
 
     return NextResponse.next();

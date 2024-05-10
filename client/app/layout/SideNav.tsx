@@ -3,10 +3,10 @@ import HomeIcon from '@mui/icons-material/Home';
 import PaidRoundedIcon from '@mui/icons-material/PaidRounded';
 import QuestionMarkRoundedIcon from '@mui/icons-material/QuestionMarkRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
-import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import Link from 'next/link';
 
 import { usePathname } from 'next/navigation';
+import Profile from '../ui/Profile';
 
 function SideNav() {
 
@@ -47,16 +47,7 @@ function SideNav() {
                             </ul>
                         </div>
                     </div>
-
-                    <div className="side-nav__footer">
-                        <div className="side-nav__footer-section">
-                            <p className="side-nav__footer-icon"></p>
-                            <div className="side-nav__footer-user">
-                                <p className="side-nav__footer-username">John Doe</p>
-                            </div>
-                        </div>
-                        <ArrowDropDownRoundedIcon />
-                    </div>
+                    <Profile />
                 </div >
             }
         </div>
