@@ -27,6 +27,38 @@ const useFetch = async (url: string, method: string, body: any) => {
     }
 }
 
+export async function register(prevState: any, formData: FormData) {
+    const credentials = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        username: formData.get('username'),
+        password: formData.get('password'),
+        phone_number: formData.get('phone_number')
+    }
+
+    const endpoint = `${baseUrl}/auth/register`
+    const response = await fetch(endpoint, {
+        method: 'POST',
+        body: JSON.stringify(credentials),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        cookies().set('accessToken', data.access_token, {
+            maxAge: 60 * 60 * 24,
+        });
+        const user = _.omit(data.user, ['app_metadata', 'user_metadata', 'identities'])
+        cookies().set('user', JSON.stringify(user));
+        redirect('/auth/sign-in');
+    } else {
+        return { error: 'Unable to Create Account' };
+    }
+
+}
+
 export async function login(prevState: any, formData: FormData) {
     const credentials = {
         email: formData.get('email'),

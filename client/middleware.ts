@@ -17,11 +17,11 @@ export function middleware(request: NextRequest) {
 
     const isLoggedIn = request.cookies.get('accessToken')
 
-    if (!isLoggedIn && !request.nextUrl.pathname.startsWith('/auth/login')) {
-        return NextResponse.redirect(new URL("/auth/login", request.url));
+    if (!isLoggedIn && !request.nextUrl.pathname.includes('/auth')) {
+        return NextResponse.redirect(new URL("/auth/sign-in", request.url));
     }
 
-    if (isLoggedIn && request.nextUrl.pathname.startsWith('/auth/login')) {
+    if (isLoggedIn && request.nextUrl.pathname.includes('/auth')) {
         return NextResponse.redirect(new URL("/", request.url))
     }
 
