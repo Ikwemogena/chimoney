@@ -13,7 +13,9 @@ function Payment() {
                 <button onClick={() => setIsOpen(true)}>Send Money</button>
                 <button>Recieve Payment</button>
             </div>
-            <PaymentModal open={isOpen} close={closeModal} />
+            {
+                isOpen && <PaymentModal open={isOpen} close={closeModal} />
+            }
         </>
     )
 }

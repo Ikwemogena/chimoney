@@ -1,5 +1,5 @@
 interface InfoItemProps {
-    value: string;
+    value: any;
     label: string;
 }
 
