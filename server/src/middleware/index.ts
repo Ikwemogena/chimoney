@@ -13,14 +13,14 @@ export const isAuthenticated = async (req: express.Request, res: express.Respons
         const existingUser = await getUserByToken(accessToken)
 
         if (!existingUser) {
-            return res.status(403).send({ message: 'Invalid token.' });
+            return res.status(403).send({ message: 'Invalid token, please login again.' });
         }
 
         merge(req, { identity: existingUser });
 
         return next()
     } catch (error) {
-        res.sendStatus(403);
+        return error
     }
 }
 
