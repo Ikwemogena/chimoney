@@ -47,10 +47,12 @@ export default async function Home() {
               <button>view all</button>
             </div>
 
-            {transactions ?
+            {transactions.length ?
               transactions.map((transaction: any, index: any) => (
                 <TransactionInfo key={index} transaction={transaction} />
-              )) : <p>No transactions found</p>
+              )) : <div className="no-transactions">
+                <p>No transactions yet</p>
+              </div>
             }
           </div>
           {walletSummary ? <WalletInfoCard wallets={walletSummary} /> : <p>no records</p>}
