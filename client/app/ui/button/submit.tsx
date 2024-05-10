@@ -3,12 +3,12 @@
 import CircularProgress from '@mui/material/CircularProgress';
 import { useFormStatus } from 'react-dom'
 
-export function SubmitButton() {
+export function SubmitButton({ text }: { text: string }) {
     const { pending } = useFormStatus()
 
     return (
         <button className='submit-button' type="submit" disabled={pending}>
-            {pending && <Loader />} Submit
+            {pending && <Loader />} {text}
         </button>
     )
 }
