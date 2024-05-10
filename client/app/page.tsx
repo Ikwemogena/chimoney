@@ -3,14 +3,19 @@ import Payment from "./ui/Payment";
 import InfoCard from "./ui/dashboard/InfoCard";
 import TransactionInfo from "./ui/dashboard/TransactionInfo";
 import WalletInfoCard from "./ui/dashboard/WalletInfoCard";
+import { Toaster, toast } from 'sonner'
 
 export default async function Home() {
 
-  const transactions = await fetchUserTransactions("9edd014b-152f-44f2-a75f-e570c944e0d4")
+  const transactions = await fetchUserTransactions()
 
-  const walletSummary: any[] = await fetchWalletSummary("9edd014b-152f-44f2-a75f-e570c944e0d4") as any[];
+  const walletSummary: any[] = await fetchWalletSummary() as [];
 
-  const totalWalletBalance = walletSummary.reduce((acc: any, wallet: any) => acc + wallet.balance, 0);
+  let totalWalletBalance = 0
+
+  if (walletSummary) {
+    totalWalletBalance = walletSummary.reduce((acc: any, wallet: any) => acc + wallet.balance, 0);
+  }
 
   const infoItems = [
     { value: totalWalletBalance, label: "Available Balance" },
