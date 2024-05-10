@@ -14,7 +14,7 @@ function SideNav() {
 
     return (
         <div>
-            { pathname !== '/auth/login' &&
+            {!pathname.includes('/auth') &&
                 <div className="side-nav" >
                     <div className="side-nav__header">
                         <h2 className="side-nav__name">name</h2>
@@ -59,7 +59,7 @@ function SideNav() {
                     </div>
                 </div >
             }
-            </div>
+        </div>
     )
 }
 

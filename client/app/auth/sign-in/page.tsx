@@ -3,29 +3,18 @@ import { login } from "@/app/lib/actions"
 import { SubmitButton } from "@/app/ui/button/submit"
 import { Box, TextField, Typography } from "@mui/material"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 import { useFormState } from "react-dom"
 
 function page() {
-    return (
-        <Box
-            display="flex"
-            alignItems="center"
-        >
-            <Box bgcolor="#670b78" height={'100vh'} width={'100%'}>
-                Image here
-            </Box>
-            <Login />
 
-        </Box >
-    )
-}
-
-export default page
-
-// login component here
-function Login() {
+    const router = useRouter()
 
     const [state, formAction] = useFormState(login, null)
+
+    const goToSignUp = () => {
+        router.push('/auth/sign-up')
+    }
 
     return (
         <Box height={'100vh'} width={'100%'} display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"}>
@@ -33,7 +22,7 @@ function Login() {
                 <Box display={"flex"} flexDirection={"column"} gap={1} width={"100%"}>
                     {/* <Image src="https://chimoney.io/assets/icons/chimoney-purple-logo.svg" alt="Chimoney Logo" width={100} height={100} /> */}
                     <Typography variant="h4" fontWeight={700}>Welcome, Morgz</Typography>
-                    <Typography variant="subtitle2" color={"GrayText"}>Login to your account to continue</Typography>
+                    <Typography variant="subtitle2" color={"GrayText"}>Sign in to your account to continue</Typography>
                 </Box>
                 <Box width={"100%"}>
                     <form action={formAction}>
@@ -46,7 +35,7 @@ function Login() {
                             <Typography variant="subtitle1">Forgot password?</Typography>
                         </Box>
                         <Box display={"flex"} marginTop={5}>
-                            <SubmitButton />
+                            <SubmitButton text="Login" />
                         </Box>
                     </form>
                 </Box>
@@ -55,9 +44,14 @@ function Login() {
                 </Box>
             </Box>
 
-            {/* <Box display={"flex"} justifyContent={"center"} marginTop={2}>
+            <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"} marginTop={2} gap={1}>
                 <Typography variant="subtitle1">Don't have an account?</Typography>
-            </Box> */}
+                <Box>
+                    <button className="auth-sign" onClick={() => goToSignUp()}>Sign Up</button>
+                </Box>
+            </Box>
         </Box>
     )
 }
+
+export default page
