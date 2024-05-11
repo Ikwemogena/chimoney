@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import { fetchUser, signOut } from '../lib/actions';
+import { toast } from 'sonner';
 export default function Profile() {
     const [email, setEmail] = useState(null);
     const [account, setAccount] = useState(null);
@@ -16,6 +17,13 @@ export default function Profile() {
 
     const handleClose = () => {
         setAnchorEl(null);
+    };
+
+    const copyToClipboard = () => {
+        if (account) {
+            navigator.clipboard.writeText(account);
+            toast.info('Copied to clipboard');
+        }
     };
 
     const logout = () => {
@@ -59,7 +67,7 @@ export default function Profile() {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                <MenuItem>{account}</MenuItem>
+                <MenuItem onClick={copyToClipboard}>{account}</MenuItem>
                 <MenuItem onClick={logout}>Logout</MenuItem>
             </Menu>
         </div>
