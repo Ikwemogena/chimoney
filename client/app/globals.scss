@@ -196,6 +196,10 @@ main {
       }
     }
 
+    &-wrapper {
+      margin-top: 1rem;
+    }
+
     &-title {
       display: flex;
       justify-content: space-between;
@@ -229,6 +233,12 @@ main {
 
     &-item {
       display: flex;
+    }
+
+    &-details {
+      h4 {
+        text-transform: capitalize;
+      }
     }
 
     &-summary {
@@ -428,5 +438,18 @@ main {
     background-color: #670b78;
     color: #ffffff;
     transition: 0.3s;
+  }
+}
+
+.transactions {
+  padding: 4rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }
