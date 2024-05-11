@@ -21,7 +21,7 @@ function page() {
             <Box display={"flex"} alignItems={"center"} flexDirection={"column"} justifyContent={"space-between"} gap={6} padding={5}>
                 <Box display={"flex"} flexDirection={"column"} gap={1} width={"100%"}>
                     {/* <Image src="https://chimoney.io/assets/icons/chimoney-purple-logo.svg" alt="Chimoney Logo" width={100} height={100} /> */}
-                    <Typography variant="h4" fontWeight={700}>Welcome, Morgz</Typography>
+                    <Typography variant="h4" fontWeight={700}>Welcome back,</Typography>
                     <Typography variant="subtitle2" color={"GrayText"}>Sign in to your account to continue</Typography>
                 </Box>
                 <Box width={"100%"}>
