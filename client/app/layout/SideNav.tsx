@@ -24,13 +24,14 @@ function SideNav() {
                         <div className="side-nav__menu">
                             <div className="side-nav__menu-section">
                                 <ul className="side-nav__menu-list">
-                                    <li className="side-nav__menu-item">
+                                    {/* > */}
+                                    <li className={pathname === '/' ? 'side-nav__menu-item active-route' : 'side-nav__menu-item'}>
                                         <Link href="/" className="side-nav__menu-link">
                                             <HomeIcon />
                                             Home
                                         </Link>
                                     </li>
-                                    <li className="side-nav__menu-item">
+                                    <li className={pathname === '/transactions' ? 'side-nav__menu-item active-route' : 'side-nav__menu-item'}>
                                         <Link href="/transactions" className="side-nav__menu-link"><PaidRoundedIcon />Transactions</Link>
                                     </li>
                                 </ul>

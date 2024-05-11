@@ -55,13 +55,23 @@
         gap: 0.5rem;
 
         &:hover {
-          color: red;
+          color: #670b78;
         }
+
+
       }
 
       &:hover {
         color: red;
       }
+    }
+  }
+
+  .active-route {
+    background-color: #670b78;
+
+    a {
+      color: #ffffff;
     }
   }
 
