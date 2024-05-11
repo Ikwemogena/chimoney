@@ -3,11 +3,10 @@ import Payment from "./ui/Payment";
 import InfoCard from "./ui/dashboard/InfoCard";
 import TransactionInfo from "./ui/dashboard/TransactionInfo";
 import WalletInfoCard from "./ui/dashboard/WalletInfoCard";
-import { Toaster, toast } from 'sonner'
 
 export default async function Home() {
 
-  const transactions = await fetchUserTransactions()
+  const transactions: [] = await fetchUserTransactions()
 
   const walletSummary: any[] = await fetchWalletSummary() as [];
 
@@ -19,8 +18,8 @@ export default async function Home() {
 
   const infoItems = [
     { value: totalWalletBalance, label: "Available Balance" },
-    { value: "23", label: "Send Money" },
-    { value: "23", label: "Recieve Payment" }
+    { value: "--", label: "Unpaid Requests" },
+    { value: "--", label: "Paid Requests" }
   ];
 
   return (
@@ -47,13 +46,15 @@ export default async function Home() {
               <button>view all</button>
             </div>
 
-            {transactions.length ?
-              transactions.map((transaction: any, index: any) => (
-                <TransactionInfo key={index} transaction={transaction} />
-              )) : <div className="no-transactions">
-                <p>No transactions yet</p>
-              </div>
-            }
+            <div className="dashboard__transactions-wrapper">
+              {transactions && transactions.length ?
+                transactions.slice(0, 5).map((transaction: any, index: any) => (
+                  <TransactionInfo key={index} transaction={transaction} />
+                )) : <div className="no-transactions">
+                  <p>No transactions yet</p>
+                </div>
+              }
+            </div>
           </div>
           {walletSummary ? <WalletInfoCard wallets={walletSummary} /> : <p>no records</p>}
         </div>

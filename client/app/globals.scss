@@ -160,16 +160,6 @@ main {
       border-radius: 12px;
       gap: 1rem;
       max-height: 380px;
-      overflow-y: scroll;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
-
-
-
 
       h3 {
         color: #303030;
@@ -196,6 +186,10 @@ main {
       }
     }
 
+    &-wrapper {
+      margin-top: 1rem;
+    }
+
     &-title {
       display: flex;
       justify-content: space-between;
@@ -217,7 +211,6 @@ main {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 100%;
       gap: 1rem;
       border-bottom: 1px solid #e0e0e0;
       padding: 12px 16px;
@@ -229,6 +222,12 @@ main {
 
     &-item {
       display: flex;
+    }
+
+    &-details {
+      h4 {
+        text-transform: capitalize;
+      }
     }
 
     &-summary {
@@ -428,5 +427,18 @@ main {
     background-color: #670b78;
     color: #ffffff;
     transition: 0.3s;
+  }
+}
+
+.transactions {
+  padding: 4rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }
