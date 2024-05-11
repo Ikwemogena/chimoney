@@ -7,6 +7,7 @@ import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import { fetchUser, signOut } from '../lib/actions';
 export default function Profile() {
     const [email, setEmail] = useState(null);
+    const [account, setAccount] = useState(null);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -25,6 +26,7 @@ export default function Profile() {
     const fetchData = async () => {
         const user = await fetchUser();
         setEmail(user?.email);
+        setAccount(user?.id);
     };
 
     useEffect(() => {
@@ -57,6 +59,7 @@ export default function Profile() {
                     'aria-labelledby': 'basic-button',
                 }}
             >
+                <MenuItem>{account}</MenuItem>
                 <MenuItem onClick={logout}>Logout</MenuItem>
             </Menu>
         </div>
