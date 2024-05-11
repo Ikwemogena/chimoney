@@ -3,7 +3,6 @@ import Payment from "./ui/Payment";
 import InfoCard from "./ui/dashboard/InfoCard";
 import TransactionInfo from "./ui/dashboard/TransactionInfo";
 import WalletInfoCard from "./ui/dashboard/WalletInfoCard";
-import { Toaster, toast } from 'sonner'
 
 export default async function Home() {
 
@@ -49,7 +48,7 @@ export default async function Home() {
 
             <div className="dashboard__transactions-wrapper">
               {transactions && transactions.length ?
-                transactions.map((transaction: any, index: any) => (
+                transactions.slice(0, 5).map((transaction: any, index: any) => (
                   <TransactionInfo key={index} transaction={transaction} />
                 )) : <div className="no-transactions">
                   <p>No transactions yet</p>

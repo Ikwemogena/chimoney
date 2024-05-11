@@ -160,16 +160,6 @@ main {
       border-radius: 12px;
       gap: 1rem;
       max-height: 380px;
-      overflow-y: scroll;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
-
-
-
 
       h3 {
         color: #303030;
@@ -221,7 +211,6 @@ main {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 100%;
       gap: 1rem;
       border-bottom: 1px solid #e0e0e0;
       padding: 12px 16px;
