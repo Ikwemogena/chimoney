@@ -22,7 +22,7 @@ export default function Profile() {
     const copyToClipboard = () => {
         if (account) {
             navigator.clipboard.writeText(account);
-            toast.info('Copied to clipboard');
+            toast.info('Account Number Copied');
         }
     };
 
