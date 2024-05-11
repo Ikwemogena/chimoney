@@ -4,10 +4,10 @@ function TransactionInfo({ transaction }: any) {
     return (
         <div className="dashboard__transactions-list">
             <div className="dashboard__transactions-item">
-                <p>i</p>
+                {/* <p>i</p> */}
                 <div className="dashboard__transactions-details">
-                    <h4>{transaction.type}</h4>
-                    <p>{transaction.redeemData.receiver}</p>
+                    <h4>{transaction.status}</h4>
+                    <p>{transaction.id}</p>
                 </div>
             </div>
             <div className="dashboard__transactions-summary">
