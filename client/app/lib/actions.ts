@@ -87,7 +87,7 @@ export async function login(prevState: any, formData: FormData) {
     }
 }
 
-export const signOut = () => { 
+export const signOut = () => {
     cookies().delete('accessToken');
     redirect('/auth/sign-in');
 }
@@ -242,3 +242,9 @@ export const requestPayment = async (prevState: any, formData: FormData) => {
     // }
 }
 
+
+
+export const fetchUser = async () => {
+    let user = cookies().get('user')?.value
+    return user ? JSON.parse(user) : null
+}

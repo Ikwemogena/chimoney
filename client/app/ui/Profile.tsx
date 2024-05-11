@@ -1,17 +1,18 @@
 "use client"
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
-import { signOut } from '../lib/actions';
-
+import { fetchUser, signOut } from '../lib/actions';
 export default function Profile() {
+    const [email, setEmail] = useState(null);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
+
     const handleClose = () => {
         setAnchorEl(null);
     };
@@ -20,6 +21,16 @@ export default function Profile() {
         signOut()
         handleClose()
     }
+
+    const fetchData = async () => {
+        const user = await fetchUser();
+        setEmail(user?.email);
+    };
+
+    useEffect(() => {
+
+        fetchData();
+    }, []);
 
     return (
         <div>
@@ -32,7 +43,7 @@ export default function Profile() {
                 <div className="side-nav__footer-section">
                     <p className="side-nav__footer-icon"></p>
                     <div className="side-nav__footer-user">
-                        <p className="side-nav__footer-username">John Doe</p>
+                        <p className="side-nav__footer-username">{email}</p>
                     </div>
                 </div>
                 <ArrowDropDownRoundedIcon />
