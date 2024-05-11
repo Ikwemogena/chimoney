@@ -16,35 +16,25 @@ function SideNav() {
         <div>
             {!pathname.includes('/auth') &&
                 <div className="side-nav" >
-                    <div className="side-nav__header">
-                        <h2 className="side-nav__name">name</h2>
-                    </div>
-
-                    <div className="side-nav__menu">
-                        <div className="side-nav__menu-section">
-                            <ul className="side-nav__menu-list">
-                                <li className="side-nav__menu-item">
-                                    <Link href="/" className="side-nav__menu-link">
-                                        <HomeIcon />
-                                        Home
-                                    </Link>
-                                </li>
-                                <li className="side-nav__menu-item">
-                                    <Link href="/transactions" className="side-nav__menu-link"><PaidRoundedIcon />Transactions</Link>
-                                </li>
-
-                            </ul>
+                    <div className="side-nav__inner">
+                        <div className="side-nav__header">
+                            <h2 className="side-nav__name">Sender.</h2>
                         </div>
 
-                        <div className="side-nav__menu-section">
-                            <ul className="side-nav__menu-list">
-                                <li className="side-nav__menu-item">
-                                    <a href="#" className="side-nav__menu-link"><QuestionMarkRoundedIcon />Help</a>
-                                </li>
-                                <li className="side-nav__menu-item">
-                                    <a href="#" className="side-nav__menu-link"><SettingsRoundedIcon />Settings</a>
-                                </li>
-                            </ul>
+                        <div className="side-nav__menu">
+                            <div className="side-nav__menu-section">
+                                <ul className="side-nav__menu-list">
+                                    <li className="side-nav__menu-item">
+                                        <Link href="/" className="side-nav__menu-link">
+                                            <HomeIcon />
+                                            Home
+                                        </Link>
+                                    </li>
+                                    <li className="side-nav__menu-item">
+                                        <Link href="/transactions" className="side-nav__menu-link"><PaidRoundedIcon />Transactions</Link>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <Profile />
