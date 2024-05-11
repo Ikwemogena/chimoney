@@ -1,3 +1,5 @@
+import { formatNumber } from "@/utils/number";
+
 interface WalletProps {
   id: string;
   owner: string;
@@ -14,7 +16,7 @@ function WalletInfoCard({ wallets }: { wallets: WalletProps[] }) {
           wallets.map((wallet: WalletProps, index: number) => (
             <div key={index} className="dashboard__balances-item">
               <p className="dashboard__balances-item-type">{wallet.type} Wallet</p>
-              <p className="dashboard__balances-item-balance">{wallet.balance}</p>
+              <p className="dashboard__balances-item-balance">{formatNumber(wallet.balance)}</p>
             </div>
           ))
         }

@@ -1,6 +1,7 @@
 import { formatDate } from "@/utils/date";
 import { fetchUserTransactions } from "../lib/actions"
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
+import { formatNumber } from "@/utils/number";
 
 interface Transaction {
     id: number;
@@ -38,8 +39,8 @@ export default async function page() {
                                     <TableRow key={transaction.id}>
                                         <TableCell>{transaction.id}</TableCell>
                                         <TableCell>{formatDate(transaction.issueDate)}</TableCell>
-                                        <TableCell>{transaction.valueInUSD}</TableCell>
-                                        <TableCell>{transaction.chimoney}</TableCell>
+                                        <TableCell>{formatNumber(transaction.valueInUSD)}</TableCell>
+                                        <TableCell>{formatNumber(transaction.chimoney)}</TableCell>
                                         <TableCell>{transaction.status}</TableCell>
                                     </TableRow>
                                 ))}

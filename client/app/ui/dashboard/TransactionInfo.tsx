@@ -1,4 +1,5 @@
 import { formatDate } from "@/utils/date"
+import { formatNumber } from "@/utils/number"
 
 function TransactionInfo({ transaction }: any) {
     return (
@@ -11,7 +12,7 @@ function TransactionInfo({ transaction }: any) {
                 </div>
             </div>
             <div className="dashboard__transactions-summary">
-                <h4>{transaction.valueInUSD}USD</h4>
+                <h4>{formatNumber(transaction.valueInUSD)}USD</h4>
                 <p>{formatDate(transaction.paymentDate)}</p>
             </div>
         </div>

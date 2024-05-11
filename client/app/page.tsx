@@ -18,8 +18,8 @@ export default async function Home() {
 
   const infoItems = [
     { value: totalWalletBalance, label: "Available Balance" },
-    { value: "--", label: "Unpaid Requests" },
-    { value: "--", label: "Paid Requests" }
+    { value: 0, label: "---" },
+    { value: 0, label: "---" }
   ];
 
   return (
