@@ -27,7 +27,7 @@ export default async function Home() {
       <section className="dashboard">
         <div className="dashboard__container">
           <div className="dashboard__greeting">
-            <h2 className="dashboard__greeting-title">Good morning, Morgz</h2>
+            <h2 className="dashboard__greeting-title">Welcome,</h2>
             <p className="dashboard__greeting-subtitle">Here's what you missed while you were away</p>
           </div>
           <div className="flex">
